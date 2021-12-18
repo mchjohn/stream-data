@@ -50,13 +50,10 @@ export function Home() {
   const theme = useTheme();
   const { signOut, user, isLoggingOut } = useAuth();
 
-  // creates a function to handle sign out
   async function handleSignOut() {
-    // try to call and wait signOut
     try {
       await signOut();
     } catch (error) {
-      // if fails, display an Alert with the title "Erro SignOut" and message "Ocorreu um erro ao tentar se deslogar do app"
       Alert.alert('Erro SignOut', 'Ocorreu um erro ao tentar se deslogar do app');
     }
   }
@@ -128,10 +125,7 @@ export function Home() {
           <UserInfoText style={{ fontFamily: theme.fonts.bold }}>{user.display_name}</UserInfoText>
         </UserInfo>
 
-        <SignOutButton onPress={signOut}>
-          {/* Verify if isLoggingOut is true
-          If it is, show an ActivityIndicator
-          Otherwise, show Feather's power icon */}
+        <SignOutButton onPress={handleSignOut}>
           {isLoggingOut ?
             <ActivityIndicator size={25} color={theme.colors.white} /> :
             <Feather name='power' size={24} color={theme.colors.white} />}
